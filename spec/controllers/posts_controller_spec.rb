@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe PostsController, type: :controller do
 
   describe "GET #index" do
-    let(:posts) { create_list(:post, 5) }
+    let(:posts) { create_list(:post, 1) }
 
     it "assigns all posts to @posts" do
       get :index
@@ -20,6 +20,7 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
+<<<<<<< HEAD
   let(:admin) { Admin.create(email: "poster@social.com", password: "12345678") }
 
   let(:valid_attributes) do
@@ -36,6 +37,17 @@ RSpec.describe PostsController, type: :controller do
          post :create, {post: valid_attributes}
          expect(response).to redirect_to new_user_session_path
        end
+=======
+  describe "POST #create" do
+    let(:valid_attributes) do
+    { title: "Title", content: "So many tests!!" }
+    end
+
+    let(:invalid_attributes) do
+    { title: "" }
+    end
+
+>>>>>>> 3f2b8f553aaa573a2645144d6de1ec6ec99f227a
     context "with valid params" do
         it "creates a new Post" do
           expect {
