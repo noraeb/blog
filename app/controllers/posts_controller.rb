@@ -10,10 +10,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-<<<<<<< HEAD
-    @post.admin = current_user_admin
-=======
->>>>>>> 3f2b8f553aaa573a2645144d6de1ec6ec99f227a
+    @post.admin = current_admin
 
     if @post.save
       redirect_to root_url, notice: 'Post was successfully created.'
