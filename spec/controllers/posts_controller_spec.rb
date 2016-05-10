@@ -20,6 +20,24 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
+<<<<<<< HEAD
+  let(:admin) { Admin.create(email: "poster@social.com", password: "12345678") }
+
+  let(:valid_attributes) do
+  { title: "Title", content: "So many tests!!", admin: admin }
+  end
+
+  let(:invalid_attributes) do
+  { title: "" }
+  end
+  
+  describe "POST #create" do
+
+    it "is not accessible when not logged in" do
+         post :create, {post: valid_attributes}
+         expect(response).to redirect_to new_user_session_path
+       end
+=======
   describe "POST #create" do
     let(:valid_attributes) do
     { title: "Title", content: "So many tests!!" }
@@ -29,6 +47,7 @@ RSpec.describe PostsController, type: :controller do
     { title: "" }
     end
 
+>>>>>>> 3f2b8f553aaa573a2645144d6de1ec6ec99f227a
     context "with valid params" do
         it "creates a new Post" do
           expect {
