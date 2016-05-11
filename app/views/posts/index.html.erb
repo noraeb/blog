@@ -14,4 +14,5 @@
 <%= link_to "Admin log out", destroy_admin_session_path, method: :delete, :id => "admin_logout_link" %>
 <% else %>
 <%= link_to "Admin log In", new_admin_session_path, :id => "admin_link" %>
+<%= link_to "Sign up", new_user_registration_path %>
 <% end %>
