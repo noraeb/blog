@@ -1,0 +1,16 @@
+<%= form_for @post do |f| %>
+
+<div class="input required">
+  <%= f.label :title %>
+  <%= f.text_area :title %>
+</div>
+
+<div class="input required">
+  <%= f.label :content %>
+  <%= f.text_area :content %>
+</div>
+
+  <div class="actions">
+    <%= f.submit (@post.new_record? ? "Create" : "Update") %>
+  </div>
+<% end %>

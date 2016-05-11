@@ -16,6 +16,17 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+
+    if @post.destroy
+    redirect_to posts_path, notice: 'Post successfully deleted'
+    else
+    redirect_to new_admin_session, alert: "Not authorized! Please log in."
+    end
+  end
+
   def create
     @post = Post.new(post_params)
     @post.admin = current_admin
@@ -27,18 +38,19 @@ class PostsController < ApplicationController
     end
   end
 
-  def destroy
-    @post = Post.find(params[:id])
-    @post.admin = current_admin
-    @post.destroy
-
-    if @post.destroy
-      redirect_to posts_path, notice: "Post deleted"
-    else
-      redirect_to new_admin_session_path, alert: "You're not allowed to delete this post"
-    end
+  def edit
+     @post = Post.find( params[:id] )
   end
 
+  def update
+    @post = Post.find( params[:id] )
+
+    if @post.update_attributes( post_params )
+       redirect_to @post
+    else
+       render "edit"
+    end
+  end
   private
 
 

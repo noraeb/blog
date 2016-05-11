@@ -3,7 +3,8 @@
 <p><%= @post.content %></p>
 
 <% if current_admin %>
-<%= link_to "Delete", post_path( @post ), method: :delete, data: { confirm: "Are you sure?" } %>
+<%= link_to "Edit", edit_post_path( @post ) %>
+<%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
 
 <% if current_user %>
@@ -13,7 +14,7 @@
     <b>Commenter:</b>
     <%= current_user.email %>
   </p>
-  <%= image_tag(current_user.avatar.url) %>
+  <%= image_tag(current_user.avatar.url(:thumb)) %>
   <p>
     <b>Comment:</b>
     <%= comment.text %>
