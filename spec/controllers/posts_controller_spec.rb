@@ -75,4 +75,22 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
+    describe "DELETE #destroy" do
+      let(:post) { FactoryGirl.create(:post) }
+      let(:admins) { FactoryGirl.create(:admin) }
+
+      it "is not accessible when not logged in" do
+        delete :destroy, { id: post.to_param }
+        expect(response).to redirect_to new_admin_session_path
+      end
+
+      context "when logged in" do
+        login_admin
+
+      it "destroys an existing post" do
+        expect { delete :destroy, { id: post.to_param }
+        }.to change(Post, :count).by(-1)
+      end
+    end
+  end
 end

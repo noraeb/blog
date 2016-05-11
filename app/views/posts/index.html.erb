@@ -6,6 +6,7 @@
 
 <%= render @posts %>
 
+<% if current_admin %>
 <div class="new_post">
   <h3>New post</h3>
   <%= form_for(@post) do |f| %>
@@ -23,3 +24,10 @@
     </div>
   <% end %>
 </div>
+<% end %>
+
+<% if current_admin %>
+<%= link_to "Admin log out", destroy_admin_session_path, method: :delete %>
+<% else %>
+<%= link_to "Admin log In", new_admin_session_path %>
+<% end %>
