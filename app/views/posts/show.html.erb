@@ -5,6 +5,8 @@
 <% if current_admin %>
 <%= link_to "Delete", post_path( @post ), method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
+
+<% if current_user %>
 <h2>Comments</h2>
 <% @post.comments.each do |comment| %>
   <p>
@@ -17,6 +19,7 @@
   </p>
 <% end %>
 
+
 <h2>Add a comment:</h2>
 <%= form_for([@post, @post.comments.build]) do |f| %>
   <div class="field">
@@ -26,4 +29,7 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+<% end %>
+<% else %>
+<p><%= link_to "Log in", new_user_session_path %> or <%= link_to "sign up", new_user_registration_path %> to comment</p>
 <% end %>

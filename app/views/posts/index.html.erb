@@ -4,7 +4,9 @@
 
 <h2>Posts</h2>
 
-<%= render @posts %>
+<% @posts.each do |post| %>
+  <h3><%= link_to post.title, post %></h3>
+<% end %>
 
 <% if current_admin %>
 <%= link_to "New post", new_post_path, :id => "new_link" %>
@@ -14,5 +16,4 @@
 <%= link_to "Admin log out", destroy_admin_session_path, method: :delete, :id => "admin_logout_link" %>
 <% else %>
 <%= link_to "Admin log In", new_admin_session_path, :id => "admin_link" %>
-<%= link_to "Sign up", new_user_registration_path %>
 <% end %>
