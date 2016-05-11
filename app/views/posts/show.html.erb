@@ -5,3 +5,25 @@
 <% if current_admin %>
 <%= link_to "Delete", post_path( @post ), method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
+<h2>Comments</h2>
+<% @post.comments.each do |comment| %>
+  <p>
+    <b>Commenter:</b>
+    <%= current_user.email %>
+  </p>
+  <p>
+    <b>Comment:</b>
+    <%= comment.text %>
+  </p>
+<% end %>
+
+<h2>Add a comment:</h2>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+  <div class="field">
+    <%= f.label :text %><br />
+    <%= f.text_area :text %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
