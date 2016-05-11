@@ -6,20 +6,12 @@
 
 <%= render @posts %>
 
-<div class="new_post">
-  <h3>New post</h3>
-  <%= form_for(@post) do |f| %>
-  <div class="input required">
-    <%= f.label :title %>
-    <%= f.text_area :title %>
-  </div>
-    <div class="input required">
-      <%= f.label :content %>
-      <%= f.text_area :content %>
-    </div>
+<% if current_admin %>
+<%= link_to "New post", new_post_path, :id => "new_link" %>
+<% end %>
 
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-  <% end %>
-</div>
+<% if current_admin %>
+<%= link_to "Admin log out", destroy_admin_session_path, method: :delete, :id => "admin_logout_link" %>
+<% else %>
+<%= link_to "Admin log In", new_admin_session_path, :id => "admin_link" %>
+<% end %>

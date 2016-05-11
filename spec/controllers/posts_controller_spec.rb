@@ -25,7 +25,7 @@ RSpec.describe PostsController, type: :controller do
   let(:admin) { FactoryGirl.create(:admin) }
 
   let(:valid_attributes) do
-  { title: "Title", content: "So many tests!!" }
+  { title: "Title", content: "So many tests!!", admin: admin }
   end
 
   let(:invalid_attributes) do
@@ -33,6 +33,11 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "POST #create" do
+    it "is not accessible when not logged in" do
+      post :create, {post: valid_attributes}
+      expect(response).to redirect_to new_admin_session_path
+    end
+
     context "when logged in" do
       login_admin
 
@@ -49,7 +54,7 @@ RSpec.describe PostsController, type: :controller do
           expect(assigns(:post)).to be_a(Post)
           expect(assigns(:post)).to be_persisted
         end
-    
+
         it "redirects to the created post" do
           post :create, {post: valid_attributes}
           expect(response).to redirect_to(root_url)
@@ -69,4 +74,23 @@ RSpec.describe PostsController, type: :controller do
       end
     end
   end
+
+    describe "DELETE #destroy" do
+      let(:post) { FactoryGirl.create(:post) }
+
+      it "is not accessible when not logged in" do
+        delete :destroy, { id: post.to_param }
+        expect(response).to redirect_to new_admin_session_path
+      end
+
+      context "when logged in" do
+        login_admin
+        let(:admins) { FactoryGirl.create(:admin) }
+
+        it "destroys an existing post" do
+        expect { delete :destroy , { id: post.to_param }
+        }.to change(Post, :count).by(-1)
+      end
+    end
   end
+end
