@@ -7,23 +7,7 @@
 <%= render @posts %>
 
 <% if current_admin %>
-<div class="new_post">
-  <h3>New post</h3>
-  <%= form_for(@post) do |f| %>
-  <div class="input required">
-    <%= f.label :title %>
-    <%= f.text_area :title %>
-  </div>
-  <div class="input required">
-    <%= f.label :content %>
-    <%= f.text_area :content %>
-  </div>
-
-    <div class="actions">
-      <%= f.submit %>
-    </div>
-  <% end %>
-</div>
+<%= link_to "New post", new_post_path %>
 <% end %>
 
 <% if current_admin %>
