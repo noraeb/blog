@@ -7,4 +7,9 @@ Rails.application.routes.draw do
 
   root 'posts#index'
 
+  get 'about' => 'welcome#about'
+
+  get 'contact' => 'welcome#contact'
+
+  get 'profilepage' => 'welcome#profilepage'
 end
