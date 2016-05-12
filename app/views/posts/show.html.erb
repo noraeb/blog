@@ -1,8 +1,14 @@
 <div class="container">
   <div class="posts-container">
     <h1><%= @post.title %></h1>
-    <%= image_tag(@post.image.url, :width => 450, :height => 300) %>
+    <div class="image">
+      <%= image_tag @post.image.url, :width => 400, :height => 300 if @post.image.present? %>
+    </div>
+    <br>
+    <div class="text-container">
     <p><%= @post.content %></p>
+  </div>
+
   </div>
 </div>
 
