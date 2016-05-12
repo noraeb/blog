@@ -44,12 +44,12 @@ RSpec.describe "posts/index.html.erb", type: :view do
       render
     end
 
-      it "shows link admin logout" do
-        assert_select "#admin_logout_link"
-      end
-
-      it "shows link new post" do
-        assert_select "#new_link"
-      end
+    it "shows link admin logout" do
+      assert_select "#admin_logout_link"
     end
+
+    it "shows link new post" do
+      assert_select "#new_link"
+    end
+  end
 end

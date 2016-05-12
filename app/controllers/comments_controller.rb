@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_post
+
   def index
   end
 
@@ -10,11 +11,15 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create!(params.require(:comment).permit!)
     @comment.user= current_user
-    
-    if @comment.save
-      redirect_to post_path(@post), notice: 'Thanks for commenting on my post!'
-    else
-      render :new
+
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to post_path(@post), notice: 'Thanks for commenting on my post!' }
+        format.json { render :show, status: :created, location: @comment }
+      else
+        format.html { render :new }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
   end
 
