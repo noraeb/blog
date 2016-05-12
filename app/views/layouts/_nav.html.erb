@@ -8,5 +8,14 @@
             <li><%= link_to "About", about_path %></li>
             <li><%= link_to "Contact", contact_path %></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <% if current_admin %>
+                <li><%= link_to "New post", new_post_path, :id => "new_link" %></li>
+                <li><%= link_to "Logout", destroy_admin_session_path, method: :delete, :id => "admin_logout_link" %></li>
+                <% else %>
+                <li><%= link_to "Admin log In", new_admin_session_path, :id => "admin_link" %></li>
+                <% end %>
+            </li>
+        </ul>
     </div>
 </nav>

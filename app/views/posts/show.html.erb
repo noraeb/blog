@@ -1,6 +1,7 @@
 <div class="container">
   <div class="posts-container">
     <h1><%= @post.title %></h1>
+    <%= image_tag(@post.image.url, :width => 450, :height => 300) %>
     <p><%= @post.content %></p>
   </div>
 </div>
