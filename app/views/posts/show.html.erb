@@ -1,25 +1,30 @@
-<h1><%= @post.title %></h1>
-<p><%= @post.created_at %></p>
-<p><%= @post.content %></p>
+<div class="container">
+  <div class="posts-container">
+    <h1><%= @post.title %></h1>
+    <p><%= @post.content %></p>
+  </div>
+</div>
 
-<% if current_admin %>
-<%= link_to "Edit", edit_post_path( @post ) %>
-<%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
-<% end %>
+<div class="links">
+  <% if current_admin %>
+    <%= link_to "Edit", edit_post_path( @post ) %>
+    <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" } %>
+  <% end %>
+</div>
 
+<div class="container">
+  <div class="posts-container">
+    <h2>Comments</h2>
+    <% @post.comments.each do |comment| %>
+    <p>
+      <%= image_tag(current_user.avatar.url, :width => 75, :height => 75, :crop => :fill, class: "img-circle") %>
+      <b>Commenter:</b>
+      <%= current_user.email %>
+      <b>Comment:</b>
+      <%= comment.text %>
 
-<h2>Comments</h2>
-<% @post.comments.each do |comment| %>
-  <p>
-    <b>Commenter:</b>
-    <%= current_user.email %>
-  </p>
-  <%= image_tag(current_user.avatar.url(:thumb)) %>
-  <p>
-    <b>Comment:</b>
-    <%= comment.text %>
-  </p>
-<% end %>
+    </p>
+    <% end %>
 
 <% if current_user %>
 <h2>Add a comment:</h2>

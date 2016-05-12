@@ -37,3 +37,27 @@ body {
     text-align: center;
     margin: 10px;
 }
+
+#welcome {
+  text-align: center;
+}
+
+.posts-container {
+    background: rgba(253, 253, 253, 0.85) !important;
+    border-radius: 3px;
+    margin: 20px;
+    box-shadow: 1px 1px 2px #333333;
+    padding: 20px;
+}
+
+.posts-container h3 {
+    text-align: center;
+}
+
+.links {
+    text-align: center;
+}
+
+a {
+  color: #d39b70 !important;
+}
