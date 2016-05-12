@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.create!(params.require(:comment).permit!)
 
     if @comment.save
-      redirect_to post_path(@post), notice: 'Post was successfully created.'
+      redirect_to post_path(@post), notice: 'Thanks for commenting on my post!'
     else
       render :new
     end
