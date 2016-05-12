@@ -1,5 +1,11 @@
 class PostsController < ApplicationController
-  before_action :authorize_admin!, except: [:show, :index]
+  before_action :authorize, except: [:show, :index]
+
+  def authorize
+    if current_admin.nil?
+      redirect_to new_admin_session_url, alert: "Not authorized! Please log in."
+    end
+  end
 
   def index
     @posts = Post.all
