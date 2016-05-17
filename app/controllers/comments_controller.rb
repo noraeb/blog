@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_post
-
+  before_action :authenticate_user!
+  
   def index
   end
 

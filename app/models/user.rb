@@ -7,7 +7,4 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :likes
 
-  def liked?(post)
-    likes.pluck(:post_id).include?(post.id)
-  end
 end
