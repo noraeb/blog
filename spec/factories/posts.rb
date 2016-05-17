@@ -3,6 +3,6 @@ FactoryGirl.define do
     title { Faker::Book.title }
     content { Faker::Hipster.paragraph }
     created_at { Faker::Date.backward }
-    admin { FactoryGirl.create(:admin) }
+    user { FactoryGirl.create(:user) }
   end
 end

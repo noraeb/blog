@@ -1,12 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-    <h2 id='welcome'>Welcome</h2>
+<h2 id='welcome'>Welcome</h2>
 
-  <div class="container">
-    <div class="posts-container">
-      <% @posts.each do |post| %>
+<div class="container">
+  <div class="posts-container">
+    <% @posts.each do |post| %>
       <h3><%= link_to post.title, post %></h3>
-      <% end %>
-      </div>
-
+    <% end %>
   </div>
+  <% if can? :create, @post %>
+    <%= link_to "New post", new_post_path, :id => "new_link" %>
+  <% end %>
+</div>

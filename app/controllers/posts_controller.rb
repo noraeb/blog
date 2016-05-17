@@ -1,11 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authorize, except: [:show, :index]
+  load_and_authorize_resource
 
-  def authorize
-    if current_admin.nil?
-      redirect_to new_admin_session_url, alert: "Not authorized! Please log in."
-    end
-  end
+  before_action :authenticate_user!, except: [:show, :index]
 
   def index
     @posts = Post.all
@@ -29,7 +25,7 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new(post_params)
-    @post.admin = current_admin
+    @post.user = current_user
 
     respond_to do |format|
       if @post.save
@@ -61,7 +57,6 @@ class PostsController < ApplicationController
   end
 
   private
-
 
     def post_params
       params.require(:post).permit(:title, :content, :id, :image)

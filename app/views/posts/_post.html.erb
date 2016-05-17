@@ -1,7 +1,10 @@
 <div class="post">
+  <h2><%= post.title %></h2>
   <p><%= post.content %></p>
   <noscript>
+    <% if can? :create, @like %>
     <%= render "/likes/form", post: post %>
+    <% end %>
   </noscript>
   <span class="counter" id="post-counter-<%= post.id %>">
     <%= post.likes.count %>

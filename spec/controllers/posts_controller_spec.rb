@@ -22,10 +22,10 @@ RSpec.describe PostsController, type: :controller do
   end
 
 
-  let(:admin) { FactoryGirl.create(:admin) }
+  let(:user) { FactoryGirl.create(:user) }
 
   let(:valid_attributes) do
-  { title: "Title", content: "So many tests!!", admin: admin }
+  { title: "Title", content: "So many tests!!", user: user }
   end
 
   let(:invalid_attributes) do
