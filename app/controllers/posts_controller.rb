@@ -1,8 +1,6 @@
 class PostsController < ApplicationController
   load_and_authorize_resource
 
-  before_action :authenticate_user!, except: [:show, :index]
-
   def index
     @posts = Post.all
     @post = Post.new
@@ -19,7 +17,7 @@ class PostsController < ApplicationController
     if @post.destroy
       redirect_to posts_path, notice: 'Post successfully deleted'
     else
-      redirect_to new_admin_session, alert: "Not authorized! Please log in."
+      redirect_to new_user_session, alert: "Not authorized! Please log in."
     end
   end
 

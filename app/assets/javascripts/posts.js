@@ -19,6 +19,7 @@ function like(url, id) {
 }
 
 $(document).ready(function() {
+  $.ajaxSetup({ cache: false })
   $(".like-button").click(function(e) {
     var href = $(this).attr("href");
     var post_id = $(this).attr("data-post-id");

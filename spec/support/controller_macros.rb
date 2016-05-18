@@ -1,10 +1,10 @@
 module ControllerMacros
-  def login_admin
-    let(:admin) { Admin.create(email: "admin@social.com", password: "12345678") }
+  def login_user
+    let(:user) { User.create(email: "user@social.com", password: "12345678") }
 
     before(:each) do
-      @request.env["devise.mapping"] = Devise.mappings[:admin]
-      sign_in FactoryGirl.create(:admin)
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      sign_in FactoryGirl.create(:user)
     end
   end
 end

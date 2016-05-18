@@ -1,20 +1,10 @@
-<!-- <head>
-  <script>
-  $(function() {
-    $( "input[type=submit], a, button" )
-      .button()
-      .click(function( event ) {
-        event.preventDefault();
-      });
-  });
-  </script>
-</head> -->
+<p id="notice"><%= notice %></p>
 
-<!-- <div class="container">
+<div class="container">
   <div class="posts-container">
     <%= render @post %>
   </div>
-</div> -->
+</div>
 
 <div class="links">
   <% if can? :edit, :destroy, @post %>
