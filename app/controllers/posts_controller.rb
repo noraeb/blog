@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :authorize_admin!, except: [:show, :index]
+  load_and_authorize_resource
 
   def index
     @posts = Post.all
@@ -17,13 +17,13 @@ class PostsController < ApplicationController
     if @post.destroy
       redirect_to posts_path, notice: 'Post successfully deleted'
     else
-      redirect_to new_admin_session, alert: "Not authorized! Please log in."
+      redirect_to new_user_session, alert: "Not authorized! Please log in."
     end
   end
 
   def create
     @post = Post.new(post_params)
-    @post.admin = current_admin
+    @post.user = current_user
 
     respond_to do |format|
       if @post.save
@@ -55,7 +55,6 @@ class PostsController < ApplicationController
   end
 
   private
-
 
     def post_params
       params.require(:post).permit(:title, :content, :id, :image)

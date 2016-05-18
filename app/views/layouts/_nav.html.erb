@@ -9,19 +9,12 @@
             <li><%= link_to "Contact", contact_path %></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-
-            <% if current_admin %>
-                <li><%= link_to "New post", new_post_path, :id => "new_link" %></li>
-                <li><%= link_to "Logout", destroy_admin_session_path, method: :delete, :id => "admin_logout_link" %></li>
-                <% else %>
-                <% if current_user %>
-                  <li><%= link_to "Log out", destroy_user_session_path, method: :delete %>
-                  <% else %>
-                    <li><%= link_to "Log in", new_user_session_path %></li>
-                    <% end %>
-                <li><%= link_to "Admin log In", new_admin_session_path, :id => "admin_link" %></li>
-                <% end %>
-            </li>
+          <% if current_user %>
+          <li><%= image_tag(current_user.avatar.url, :width => 50, :height => 50, :crop => :fill, class: "img-circle") if current_user.avatar.url.present? %></li>
+          <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Log in", new_user_session_path %></li>
+          <% end %>
         </ul>
     </div>
 </nav>

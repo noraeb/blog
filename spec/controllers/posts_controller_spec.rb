@@ -22,10 +22,10 @@ RSpec.describe PostsController, type: :controller do
   end
 
 
-  let(:admin) { FactoryGirl.create(:admin) }
+  let(:user) { FactoryGirl.create(:user, admin: true) }
 
   let(:valid_attributes) do
-  { title: "Title", content: "So many tests!!", admin: admin }
+  { title: "Title", content: "So many tests!!", user: user }
   end
 
   let(:invalid_attributes) do
@@ -35,11 +35,11 @@ RSpec.describe PostsController, type: :controller do
   describe "POST #create" do
     it "is not accessible when not logged in" do
       post :create, {post: valid_attributes}
-      expect(response).to redirect_to new_admin_session_path
+      expect(response).to redirect_to new_user_session_path
     end
 
     context "when logged in" do
-      login_admin
+      login_user
 
       context "with valid params" do
 
@@ -80,11 +80,11 @@ RSpec.describe PostsController, type: :controller do
 
       it "is not accessible when not logged in" do
         delete :destroy, { id: post.to_param }
-        expect(response).to redirect_to new_admin_session_path
+        expect(response).to redirect_to new_user_session_path
       end
 
       context "when logged in" do
-        login_admin
+        login_user
 
         it "destroys an existing post" do
         expect { delete :destroy , { id: post.to_param }
