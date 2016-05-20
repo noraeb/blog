@@ -33,10 +33,6 @@ RSpec.describe PostsController, type: :controller do
   end
 
   describe "POST #create" do
-    it "is not accessible when not logged in" do
-      post :create, {post: valid_attributes}
-      expect(response).to redirect_to new_user_session_path
-    end
 
     context "when logged in" do
       login_user
@@ -77,11 +73,6 @@ RSpec.describe PostsController, type: :controller do
 
     describe "DELETE #destroy" do
       let!(:post) { FactoryGirl.create(:post) }
-
-      it "is not accessible when not logged in" do
-        delete :destroy, { id: post.to_param }
-        expect(response).to redirect_to new_user_session_path
-      end
 
       context "when logged in" do
         login_user
